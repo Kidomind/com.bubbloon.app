@@ -4,23 +4,15 @@
   "display": "standalone",
   "name": "Bubbloon",
   "orientation": "any",
-  "scope": "/",
+  "scope": "./",
   "short_name": "Bubbloon",
-  "start_url": "/",
+  "start_url": "./index.html",
   "theme_color": "#140d3a",
   "icons": [
     {
-      "src": "https://kidomind.github.io/com.bubbloon.app/icon.png",
+      "src": "icon.png",
       "type": "image/png",
-      "sizes": "256x256",
-      "isSquare": true,
-      "isPng": true,
-      "isWebp": false,
-      "isJpg": false,
-      "width": 256,
-      "is512x512": false,
-      "is256x256": true,
-      "is192x192": false
+      "sizes": "256x256"
     }
   ],
   "id": "com.bubbloon.app",
