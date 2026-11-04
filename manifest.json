@@ -1,0 +1,28 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Bubbloon",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Bubbloon",
+  "start_url": "/",
+  "theme_color": "#140d3a",
+  "icons": [
+    {
+      "src": "https://kidomind.github.io/com.bubbloon.app/icon.png",
+      "type": "image/png",
+      "sizes": "256x256",
+      "isSquare": true,
+      "isPng": true,
+      "isWebp": false,
+      "isJpg": false,
+      "width": 256,
+      "is512x512": false,
+      "is256x256": true,
+      "is192x192": false
+    }
+  ],
+  "id": "com.bubbloon.app",
+  "description": "Bubbloon, renkli baloncukları patlatarak eğlenceli ve keyifli vakit geçirebileceğiniz, sevimli tasarımlara sahip bir mobil oyundur."
+}
