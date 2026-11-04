@@ -1,0 +1,27 @@
+{
+  "name": "bubbloon",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bubbloon - baloncuk patlatma oyunu",
+  "scripts": {
+    "fonts": "node scripts/fonts.mjs",
+    "assets": "npx capacitor-assets generate --android --assetPath resources",
+    "android:add": "npx cap add android && node scripts/patch-android.mjs",
+    "sync": "npm run fonts && npx cap sync android && node scripts/patch-android.mjs",
+    "open": "npx cap open android",
+    "build:aab": "cd android && ./gradlew bundleRelease",
+    "build:apk": "cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/splash-screen": "^7.0.0",
+    "@capacitor-community/admob": "^7.0.0",
+    "@capgo/native-purchases": "^7.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^7.0.0",
+    "@fontsource/baloo-2": "^5.0.0"
+  }
+}

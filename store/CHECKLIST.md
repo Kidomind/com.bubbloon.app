@@ -1,0 +1,12 @@
+# Play Console kontrol listesi
+- [ ] Geliştirici hesabı (tek seferlik 25 $)
+- [ ] Uygulama: com.aksu.bubbloon, Oyun, Ücretsiz
+- [ ] Gizlilik politikası URL'si: GitHub Pages → https://KULLANICI.github.io/bubbloon/
+- [ ] Veri güvenliği formu: reklam kimliği (AdMob) = Evet; satın alım geçmişi = Evet
+- [ ] İçerik derecelendirme anketi, hedef kitle (13+ önerilir; çocuklara yönelikse ek kurallar gelir)
+- [ ] Reklam beyanı: "Reklam içerir" = Evet
+- [ ] Uygulama içi ürün: ID `remove_ads` (Yönetilen ürün / tek seferlik), fiyatı Play'de belirle
+- [ ] 512×512 ikon: store/play-icon-512.png
+- [ ] Öne çıkan grafik: store/feature-graphic-1024x500.png
+- [ ] En az 2 telefon ekran görüntüsü (oyundan al)
+- [ ] Yeni kişisel hesaplarda: kapalı testte 12 test kullanıcısı × 14 gün şartı olabilir
