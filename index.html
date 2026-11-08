@@ -1468,7 +1468,7 @@ const T=(k,...a)=>TT(k,...a),ls=(k,v)=>{try{if(v===undefined)return localStorage
 let noAds=ls('balon-noads')==='1',cnt=+ls('balon-adcount')||0;
 const CAP=window.Capacitor,AM=CAP&&CAP.Plugins&&CAP.Plugins.AdMob,PF=CAP&&CAP.getPlatform?CAP.getPlatform():'web',ID=(ADS.useTestIds?ADS.test:ADS.ids)[PF]||(ADS.useTestIds?ADS.test:ADS.ids).android,native=!!AM&&PF!=='web';
 const DBG=e=>' ['+((e&&(e.message||e.code))||JSON.stringify(e))+']';
-if(native)AM.initialize({initializeForTesting:ADS.testMode}).catch(e=>toast('AdMob init'+DBG(e)));
+const ready=native?AM.initialize({initializeForTesting:ADS.testMode}).catch(e=>{toast('AdMob init'+DBG(e))}):Promise.resolve();
 function toast(m){let e=document.getElementById('naToast');if(!e){e=document.createElement('div');e.id='naToast';document.body.appendChild(e)}e.textContent=m;e.style.display='';clearTimeout(e._t);e._t=setTimeout(()=>e.style.display='none',2200)}
 function sim(kind,cb){const o=document.createElement('div');o.id='adFull';let n=kind==='r'?5:3;
   o.innerHTML=`<div class="af-box"><small>${T('Reklam (TEST)')}</small><div class="af-t">${T('Reklam bitmesine {0} sn',n)}</div><button disabled>${kind==='r'?T('Ödülü al'):T('Kapat')}</button>${kind==='r'?'<button class="sec">✕</button>':''}</div>`;
@@ -1476,14 +1476,14 @@ function sim(kind,cb){const o=document.createElement('div');o.id='adFull';let n=
   const iv=setInterval(()=>{n--;if(n>0)c.textContent=T('Reklam bitmesine {0} sn',n);else{clearInterval(iv);c.textContent=kind==='r'?T('Ödül hazır!'):T('Reklam bitti');b.disabled=false}},1000);
   const end=ok=>{clearInterval(iv);o.remove();cb(ok)};b.onclick=()=>end(true);if(x)x.onclick=()=>end(false)}
 function showInterstitial(done){if(noAds)return done();
-  if(native)AM.prepareInterstitial({adId:ID.i,isTesting:ADS.testMode}).then(()=>AM.showInterstitial()).then(()=>done()).catch(()=>done());else sim('i',()=>done())}
+  if(native)ready.then(()=>AM.prepareInterstitial({adId:ID.i,isTesting:ADS.testMode})).then(()=>AM.showInterstitial()).then(()=>done()).catch(()=>done());else sim('i',()=>done())}
 function showRewarded(ok,kind){if(noAds)return ok();
-  if(native)AM.prepareRewardVideoAd({adId:ID[kind||'ra'],isTesting:ADS.testMode}).then(()=>AM.showRewardVideoAd()).then(r=>{if(r)ok();else toast(T('Reklam yüklenemedi'))}).catch(e=>toast(T('Reklam yüklenemedi')+DBG(e)));else sim('r',g=>{if(g)ok()})}
+  if(native)ready.then(()=>AM.prepareRewardVideoAd({adId:ID[kind||'ra'],isTesting:ADS.testMode})).then(()=>AM.showRewardVideoAd()).then(r=>{if(r)ok();else toast(T('Reklam yüklenemedi'))}).catch(e=>toast(T('Reklam yüklenemedi')+DBG(e)));else sim('r',g=>{if(g)ok()})}
 window.AksuAds={showInterstitial,showRewarded,get noAds(){return noAds}};
 /* --- banner (alt şerit) --- */
-const bn=document.createElement('div');bn.id='adBanner';bn.textContent='TEST BANNER · 320×50';document.body.appendChild(bn);let bv=null;
+const bn=document.createElement('div');bn.id='adBanner';bn.textContent='TEST BANNER · 320×50';document.body.appendChild(bn);let bv=null,shown=false;
 function banner(){const h=$('homeScreen'),home=h&&!h.classList.contains('hidden'),want=!noAds&&!home&&['play','map','won','over'].includes(state);if(want===bv)return;bv=want;bn.style.display=want?'flex':'none';bn.classList.toggle('native',native);
-  if(native)(want?AM.showBanner({adId:ID.b,adSize:'BANNER',position:'BOTTOM_CENTER',margin:0,isTesting:ADS.testMode}):AM.hideBanner()).catch(e=>toast('Banner'+DBG(e)));fit()}
+  if(native){if(want)ready.then(()=>AM.showBanner({adId:ID.b,adSize:'BANNER',position:'BOTTOM_CENTER',margin:0,isTesting:ADS.testMode})).then(()=>{shown=true}).catch(e=>toast('Banner'+DBG(e)));else if(shown){shown=false;AM.hideBanner().catch(()=>{})}}fit()}
 setInterval(banner,300);
 /* --- 5 seviyede bir zorunlu reklam --- */
 const _fin=finish;finish=function(){const r=_fin.apply(this,arguments);if(!noAds){cnt++;ls('balon-adcount',cnt)}return r};
