@@ -1452,7 +1452,7 @@ applyLang();updateHome();$('homeScreen').classList.remove('hidden');$('ov').clas
 /* ===== AKSU ADS (banner / interstitial / rewarded / remove-ads) ===== */
 (function(){
 const ADS={
-  testMode:false,           // GERÇEK reklamlar açık
+  testMode:true,            // KAPALI TEST: test reklamları. Yayına çıkarken false yap
   every:5,                  // kaç seviyede bir zorunlu (interstitial) reklam
   giftCooldownMs:300000,    // bedava elmas aralığı
   product:'remove_ads',price:'$4.25',
