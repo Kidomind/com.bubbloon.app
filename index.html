@@ -1453,6 +1453,9 @@ applyLang();updateHome();$('homeScreen').classList.remove('hidden');$('ov').clas
 (function(){
 const ADS={
   testMode:true,            // KAPALI TEST: test reklamları. Yayına çıkarken false yap
+  useTestIds:true,          // true: Google'ın resmi test ID'leri (hep reklam döner). Gerçek ID'lere geçmek için false yap
+  test:{android:{b:'ca-app-pub-3940256099942544/6300978111',i:'ca-app-pub-3940256099942544/1033173712',rc:'ca-app-pub-3940256099942544/5224354917',ra:'ca-app-pub-3940256099942544/5224354917'},
+        ios:{b:'ca-app-pub-3940256099942544/2934735716',i:'ca-app-pub-3940256099942544/4411468910',rc:'ca-app-pub-3940256099942544/1712485313',ra:'ca-app-pub-3940256099942544/1712485313'}},
   every:5,                  // kaç seviyede bir zorunlu (interstitial) reklam
   giftCooldownMs:300000,    // bedava elmas aralığı
   product:'remove_ads',price:'$4.25',
@@ -1463,7 +1466,7 @@ const EN={'Reklamları kaldır':'Remove ads','Reklamsız':'Ad-free','Bedava 💎
 for(const k in EN)if(!I18N[k])I18N[k]=[EN[k]];
 const T=(k,...a)=>TT(k,...a),ls=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){}};
 let noAds=ls('balon-noads')==='1',cnt=+ls('balon-adcount')||0;
-const CAP=window.Capacitor,AM=CAP&&CAP.Plugins&&CAP.Plugins.AdMob,PF=CAP&&CAP.getPlatform?CAP.getPlatform():'web',ID=ADS.ids[PF]||ADS.ids.android,native=!!AM&&PF!=='web';
+const CAP=window.Capacitor,AM=CAP&&CAP.Plugins&&CAP.Plugins.AdMob,PF=CAP&&CAP.getPlatform?CAP.getPlatform():'web',ID=(ADS.useTestIds?ADS.test:ADS.ids)[PF]||(ADS.useTestIds?ADS.test:ADS.ids).android,native=!!AM&&PF!=='web';
 if(native)AM.initialize({initializeForTesting:ADS.testMode}).catch(()=>{});
 function toast(m){let e=document.getElementById('naToast');if(!e){e=document.createElement('div');e.id='naToast';document.body.appendChild(e)}e.textContent=m;e.style.display='';clearTimeout(e._t);e._t=setTimeout(()=>e.style.display='none',2200)}
 function sim(kind,cb){const o=document.createElement('div');o.id='adFull';let n=kind==='r'?5:3;
