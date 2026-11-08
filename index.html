@@ -22,7 +22,7 @@ header b{font-size:26px;font-weight:800}
 #score{color:var(--acc);font-size:32px}
 #economy{display:flex;align-items:center;justify-content:center;gap:7px;padding:3px 8px 8px;flex-wrap:wrap}#economy .wallet{font-size:13px;font-weight:800;background:#ffffff14;border:1px solid #ffffff22;border-radius:16px;padding:4px 9px;white-space:nowrap}#economy button{font:800 13px 'Baloo 2',system-ui,sans-serif;color:#fff;background:#ffffff1c;border:1px solid #ffffff35;border-radius:16px;padding:4px 12px;cursor:pointer}#powers{display:flex;justify-content:center;gap:7px;padding:0 8px 6px;flex-wrap:wrap}#powers button{font:800 12px 'Baloo 2',system-ui,sans-serif;color:#fff;background:linear-gradient(135deg,#5140a8,#30216e);border:1px solid #ffffff40;border-radius:14px;padding:5px 9px;cursor:pointer;box-shadow:0 2px 0 #17103d}#powers button:disabled{opacity:.42}#powers button.active{background:linear-gradient(135deg,#ffdc59,#ff8a1f);color:#281500;border-color:#fff0a0} #wrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;position:relative}#panel{position:fixed;z-index:100;inset:0;background:#08051beF;display:none;align-items:center;justify-content:center;padding:18px}#panel.show{display:flex}.panel-card{width:min(100%,360px);max-height:85dvh;overflow:auto;background:linear-gradient(160deg,#35247c,#17103f);border:1px solid #ffffff35;border-radius:22px;padding:20px;box-shadow:0 20px 60px #0009}.panel-card h2{margin:0 0 10px;color:#ffd23f;font-size:27px}.panel-card p{color:#e5ddff;margin:7px 0}.panel-card .mission{background:#ffffff12;border:1px solid #ffffff1c;border-radius:14px;padding:10px;margin:8px 0}.album-summary{background:linear-gradient(135deg,#ffffff18,#ffffff08);border:1px solid #ffffff24;border-radius:15px;padding:12px;margin:8px 0 12px}.album-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.album-card{min-width:0;background:#ffffff10;border:1px solid #ffffff20;border-radius:14px;padding:10px 8px;text-align:center}.album-card.found{background:linear-gradient(145deg,#ffffff20,#ffd23f14);border-color:#ffd23f88}.album-art{font-size:34px;line-height:1.25;filter:drop-shadow(0 4px 8px #0005)}.album-card h3{font-size:15px;margin:4px 0 2px;color:#fff}.album-card p{font-size:12px;line-height:1.25;margin:4px 0;color:#ded5ff}.album-progress{height:6px;background:#ffffff20;border-radius:8px;overflow:hidden;margin:7px 0}.album-progress i{display:block;height:100%;background:linear-gradient(90deg,#5be7ac,#ffe05b);border-radius:8px}.album-card button{border:0;border-radius:12px;padding:6px 8px;font:800 12px inherit;background:#ffd23f;color:#281500;width:100%;margin-top:5px}.album-card button:disabled{background:#ffffff18;color:#c9c1e9}.store-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:10px 0}.store-tabs button{border:1px solid #ffffff30;border-radius:12px;background:#ffffff12;color:#fff;padding:8px 4px;font:800 12px 'Baloo 2',system-ui,sans-serif}.store-tabs button.active{background:#ffd23f;color:#281500;border-color:#fff0a0}.store-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.store-item{min-width:0;border:1px solid #ffffff24;background:#ffffff0d;border-radius:15px;padding:10px 8px;text-align:center}.store-item.owned{border-color:#5be7ac88;background:#5be7ac10}.store-item.equipped{border-color:#ffd23f;background:#ffd23f14;box-shadow:0 0 0 1px #ffd23f22}.store-art{height:56px;display:flex;align-items:center;justify-content:center;font-size:37px;filter:drop-shadow(0 4px 7px #0005)}.store-item h3{font-size:14px;margin:3px 0;color:#fff}.store-item p{font-size:11px;line-height:1.25;color:#ded5ff;margin:4px 0 8px;min-height:28px}.store-item button{width:100%;border:0;border-radius:12px;padding:7px 4px;font:800 12px 'Baloo 2',system-ui,sans-serif;background:#ffd23f;color:#281500}.store-item button:disabled{background:#ffffff18;color:#c9c1e9}.store-balance{display:flex;justify-content:space-between;gap:8px;background:#ffffff12;border-radius:13px;padding:9px 11px;font-weight:800;font-size:13px}.store-preview{border:1px solid #ffffff20;border-radius:13px;padding:9px;text-align:center;margin:8px 0;color:#e5ddff;font-size:12px}.panel-card .close{display:block;width:100%;margin-top:14px;background:#ffd23f;color:#281500;border:0;border-radius:22px;padding:10px;font:800 18px 'Baloo 2',system-ui,sans-serif}
 canvas{display:block;border-radius:18px;background:radial-gradient(100% 60% at 50% 0%,#40309f,#241866 50%,#150d3c);box-shadow:0 0 0 2px #ffffff18,0 12px 40px #0008}
-#ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:#0e0828d9;backdrop-filter:blur(4px)}
+#ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:#0e0828d9;}
 #ov.hide{display:none}
 #snd{flex-direction:row;gap:6px;align-items:center;align-self:center}
 #snd button{width:34px;height:34px;border-radius:50%;border:0;background:#ffffff1f;color:#fff;font-size:16px;line-height:1;cursor:pointer}
@@ -81,7 +81,7 @@ canvas{display:block;border-radius:18px;background:radial-gradient(100% 60% at 5
 @media(max-height:620px){#homeScreen{gap:6px;padding-top:calc(env(safe-area-inset-top,0px) + 8px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 8px)}.home-logo p{display:none}.tile{min-height:60px;padding-top:7px}.tile .ico{width:30px;height:30px;font-size:15px}}
 @media(prefers-reduced-motion:reduce){.ring,.home-bubble,.home-play{animation:none}}
 #economy{gap:5px}#economy .wallet{font-size:12px;padding:4px 7px}#economy button{font-size:12px;padding:4px 9px}
-#res{position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:18px;background:#0b0624d9;backdrop-filter:blur(5px);overflow:hidden;animation:resIn .35s both}
+#res{position:absolute;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;padding:18px;background:#0b0624d9;overflow:hidden;animation:resIn .35s both}
 #res.hide{display:none}
 @keyframes resIn{from{opacity:0}}
 .res-confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
@@ -122,7 +122,7 @@ html[dir=rtl] header,html[dir=rtl] #economy,html[dir=rtl] #powers,html[dir=rtl] 
  background:radial-gradient(circle at 30% 26%,#ffffffc0 0 9%,#fff0 11%),radial-gradient(circle,color-mix(in srgb,var(--c) 8%,transparent) 55%,color-mix(in srgb,var(--c) 50%,transparent) 100%);
  border:1.5px solid color-mix(in srgb,var(--c) 60%,#ffffff55);box-shadow:inset -3px -4px 8px color-mix(in srgb,var(--c) 40%,transparent);animation:bgRise var(--d) linear var(--dl) infinite}
 @keyframes bgRise{0%{transform:translate(0,0);opacity:0}10%{opacity:.7}50%{transform:translate(18px,-55vh)}90%{opacity:.5}100%{transform:translate(-12px,-118vh);opacity:0}}
-.home-chip{background:linear-gradient(180deg,#ffffff2c,#ffffff0d);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 3px 10px #0004,inset 0 1px 0 #ffffff38}
+.home-chip{background:linear-gradient(180deg,#ffffff2c,#ffffff0d);box-shadow:0 3px 10px #0004,inset 0 1px 0 #ffffff38}
 .home-logo{position:relative;animation:logoBob 4.5s ease-in-out infinite}
 @keyframes logoBob{0%,100%{transform:rotate(-2.5deg) translateY(0)}50%{transform:rotate(-2.5deg) translateY(-6px)}}
 .home-logo:before,.home-logo:after{content:'✦';position:absolute;color:#fff;text-shadow:0 0 12px #fff,0 0 24px #ffd45a;animation:twinkle 2.6s ease-in-out infinite;pointer-events:none}
@@ -138,7 +138,7 @@ html[dir=rtl] header,html[dir=rtl] #economy,html[dir=rtl] #powers,html[dir=rtl] 
 .tile{background:linear-gradient(180deg,color-mix(in srgb,var(--t) 34%,#0000),#ffffff0a);border-color:color-mix(in srgb,var(--t) 50%,#ffffff24);
  box-shadow:0 4px 0 color-mix(in srgb,var(--t) 38%,#0b0626),0 9px 14px #0006,inset 0 1px 0 #ffffff30;transition:transform .12s,box-shadow .12s}
 .tile:active{transform:translateY(3px) scale(.97);box-shadow:0 1px 0 color-mix(in srgb,var(--t) 38%,#0b0626),0 3px 6px #0006,inset 0 1px 0 #ffffff30}
-.home-progress{padding:10px 14px 13px;background:linear-gradient(180deg,#ffffff1a,#ffffff08);border:1px solid #ffffff22;border-radius:18px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 6px 16px #0004}
+.home-progress{padding:10px 14px 13px;background:linear-gradient(180deg,#ffffff1a,#ffffff08);border:1px solid #ffffff22;border-radius:18px;box-shadow:0 6px 16px #0004}
 .home-progress-track{height:12px;margin-top:8px}
 .home-progress-fill{position:relative;box-shadow:0 0 12px #ffb92a99}
 .home-progress-fill:after{content:'';position:absolute;left:4px;right:4px;top:2px;height:35%;border-radius:99px;background:#ffffff59}
@@ -147,7 +147,7 @@ html[dir=rtl] header,html[dir=rtl] #economy,html[dir=rtl] #powers,html[dir=rtl] 
 @media(max-height:620px){.home-bg{display:none}.home-logo p{display:none}}
 
 /* ===== in-game HUD polish ===== */
-header{background:linear-gradient(180deg,#ffffff16,#ffffff04);border-bottom:1px solid #ffffff14;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+header{background:linear-gradient(180deg,#ffffff16,#ffffff04);border-bottom:1px solid #ffffff14;}
 #score{text-shadow:0 0 14px color-mix(in srgb,var(--acc) 70%,transparent)}
 #economy .wallet,#economy button{background:linear-gradient(180deg,#ffffff2a,#ffffff0d);box-shadow:0 2px 6px #0004,inset 0 1px 0 #ffffff30}
 #powers button{box-shadow:0 3px 0 #0005,0 6px 10px #0004,inset 0 1px 0 #ffffff30;transition:transform .1s,box-shadow .1s}
@@ -191,7 +191,7 @@ header{background:linear-gradient(180deg,#ffffff16,#ffffff04);border-bottom:1px 
 #adBanner{display:none;flex:none;align-items:center;justify-content:center;height:50px;margin-bottom:env(safe-area-inset-bottom,0px);background:#000;border-top:1px solid #ffffff22;color:#ffffff66;font:700 11px 'Baloo 2',system-ui,sans-serif;letter-spacing:1px}
 #adBanner.native{background:transparent;border:0;color:transparent}
 #adFull,#naPanel{position:fixed;inset:0;z-index:280;display:flex;align-items:center;justify-content:center;background:#000d;padding:20px}
-#naPanel{z-index:250;background:#05021acc;backdrop-filter:blur(6px)}
+#naPanel{z-index:250;background:#05021acc;}
 .af-box{width:min(100%,340px);text-align:center;color:#fff;background:#12092e;border:1px solid #ffffff2a;border-radius:22px;padding:22px 18px}
 .af-box small{display:block;color:#ffffff88;letter-spacing:2px;font-weight:700}.af-t{margin:18px 0;font-weight:800;font-size:17px}
 .af-box button{display:block;width:100%;margin-top:10px;border:0;border-radius:16px;padding:12px;font:800 16px 'Baloo 2',system-ui,sans-serif;cursor:pointer;background:#ffd23f;color:#281500}.af-box button:disabled{opacity:.35}.af-box button.sec{background:#ffffff1c;color:#fff;font-size:13px;padding:8px}
@@ -223,7 +223,7 @@ header{background:linear-gradient(180deg,#ffffff16,#ffffff04);border-bottom:1px 
 #snd #bm.off::after{content:'';position:absolute;left:24%;right:24%;top:50%;height:2px;border-radius:2px;background:#ff5c70;box-shadow:0 0 0 .5px #0008;transform:translateY(-50%) rotate(-45deg);pointer-events:none}
 #economy #homeBtn{padding:4px 11px;font-size:15px;line-height:1.1;background:linear-gradient(135deg,#7d5bff,#3b8cff);border-color:#ffffff55}
 #fxCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:400;background:none!important;box-shadow:none!important;border-radius:0!important}
-#homeConfirm{position:fixed;inset:0;z-index:260;display:flex;align-items:center;justify-content:center;background:#05021acc;backdrop-filter:blur(5px);padding:20px}
+#homeConfirm{position:fixed;inset:0;z-index:260;display:flex;align-items:center;justify-content:center;background:#05021acc;padding:20px}
 .pop{animation:popb .35s ease-out}
 @keyframes popb{40%{transform:scale(1.14)}}
 .tile{position:relative}
@@ -1476,15 +1476,16 @@ function sim(kind,cb){const o=document.createElement('div');o.id='adFull';let n=
   const iv=setInterval(()=>{n--;if(n>0)c.textContent=T('Reklam bitmesine {0} sn',n);else{clearInterval(iv);c.textContent=kind==='r'?T('Ödül hazır!'):T('Reklam bitti');b.disabled=false}},1000);
   const end=ok=>{clearInterval(iv);o.remove();cb(ok)};b.onclick=()=>end(true);if(x)x.onclick=()=>end(false)}
 const to=(p,ms)=>Promise.race([p,new Promise((_,j)=>setTimeout(()=>j('timeout'),ms))]);
+let pre=null;
+function preloadInterstitial(){if(noAds||!native||pre)return;pre=ready.then(()=>AM.prepareInterstitial({adId:ID.i,isTesting:ADS.testMode})).then(()=>true).catch(()=>{pre=null;return false})}
 function showInterstitial(done){
   if(noAds)return done();
   let fin=false;const go=()=>{if(fin)return;fin=true;done()};
-  if(native)ready
-    .then(()=>to(AM.prepareInterstitial({adId:ID.i,isTesting:ADS.testMode}),7000))
-    .then(()=>AM.showInterstitial())
-    .then(go).catch(go);
-  else sim('i',go);
+  if(!native)return sim('i',go);
+  if(!pre){preloadInterstitial();return go()}
+  to(pre,1500).then(ok=>{if(!ok)throw 0;pre=null;return AM.showInterstitial()}).then(()=>{preloadInterstitial();go()}).catch(()=>{preloadInterstitial();go()});
 }
+setTimeout(preloadInterstitial,3000);
 function showRewarded(ok,kind){if(noAds)return ok();
   if(native)ready.then(()=>AM.prepareRewardVideoAd({adId:ID[kind||'ra'],isTesting:ADS.testMode})).then(()=>AM.showRewardVideoAd()).then(r=>{if(r)ok();else toast(T('Reklam yüklenemedi'))}).catch(e=>toast(T('Reklam yüklenemedi')+DBG(e)));else sim('r',g=>{if(g)ok()})}
 window.AksuAds={showInterstitial,showRewarded,get noAds(){return noAds}};
