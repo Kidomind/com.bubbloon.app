@@ -1475,8 +1475,16 @@ function sim(kind,cb){const o=document.createElement('div');o.id='adFull';let n=
   document.body.appendChild(o);const b=o.querySelector('button'),c=o.querySelector('.af-t'),x=o.querySelector('.sec');
   const iv=setInterval(()=>{n--;if(n>0)c.textContent=T('Reklam bitmesine {0} sn',n);else{clearInterval(iv);c.textContent=kind==='r'?T('Ödül hazır!'):T('Reklam bitti');b.disabled=false}},1000);
   const end=ok=>{clearInterval(iv);o.remove();cb(ok)};b.onclick=()=>end(true);if(x)x.onclick=()=>end(false)}
-function showInterstitial(done){if(noAds)return done();
-  if(native)ready.then(()=>AM.prepareInterstitial({adId:ID.i,isTesting:ADS.testMode})).then(()=>AM.showInterstitial()).then(()=>done()).catch(()=>done());else sim('i',()=>done())}
+const to=(p,ms)=>Promise.race([p,new Promise((_,j)=>setTimeout(()=>j('timeout'),ms))]);
+function showInterstitial(done){
+  if(noAds)return done();
+  let fin=false;const go=()=>{if(fin)return;fin=true;done()};
+  if(native)ready
+    .then(()=>to(AM.prepareInterstitial({adId:ID.i,isTesting:ADS.testMode}),7000))
+    .then(()=>AM.showInterstitial())
+    .then(go).catch(go);
+  else sim('i',go);
+}
 function showRewarded(ok,kind){if(noAds)return ok();
   if(native)ready.then(()=>AM.prepareRewardVideoAd({adId:ID[kind||'ra'],isTesting:ADS.testMode})).then(()=>AM.showRewardVideoAd()).then(r=>{if(r)ok();else toast(T('Reklam yüklenemedi'))}).catch(e=>toast(T('Reklam yüklenemedi')+DBG(e)));else sim('r',g=>{if(g)ok()})}
 window.AksuAds={showInterstitial,showRewarded,get noAds(){return noAds}};
