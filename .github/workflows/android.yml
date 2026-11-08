@@ -58,6 +58,11 @@ jobs:
         run: |
           sed -i "s/versionCode [0-9]*/versionCode $(( ${{ github.run_number }} + 100 ))/" android/app/build.gradle
 
+      - name: minSdk 24 yap
+        run: |
+          sed -i "s/minSdkVersion = [0-9]*/minSdkVersion = 24/" android/variables.gradle
+          grep -n "minSdkVersion" android/variables.gradle
+
       - name: Test APK derle
         if: github.ref_type != 'tag'
         run: npm run build:apk
