@@ -56,7 +56,7 @@ jobs:
 
       - name: Surum kodunu ayarla
         run: |
-          sed -i "s/versionCode [0-9]*/versionCode ${{ github.run_number }}/" android/app/build.gradle
+          sed -i "s/versionCode [0-9]*/versionCode $(( ${{ github.run_number }} + 100 ))/" android/app/build.gradle
 
       - name: Test APK derle
         if: github.ref_type != 'tag'
@@ -83,7 +83,7 @@ jobs:
         run: |
           echo "$KEYSTORE_BASE64" | base64 -d > release.keystore
           AAB=$(ls android/app/build/outputs/bundle/release/*.aab | head -n1)
-          jarsigner -keystore release.keystore -storepass "$KEYSTORE_PASSWORD" -keypass "$KEY_PASSWORD" "$AAB" "$KEY_ALIAS"
+          jarsigner -sigalg SHA256withRSA -digestalg SHA-256 -keystore release.keystore -storepass "$KEYSTORE_PASSWORD" -keypass "$KEY_PASSWORD" "$AAB" "$KEY_ALIAS"
           cp "$AAB" bubbloon-release.aab
 
       - name: AAB yukle
