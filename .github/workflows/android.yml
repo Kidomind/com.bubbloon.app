@@ -81,44 +81,70 @@ jobs:
           print("Launcher icons corrected.")
           PY
 
-      - name: AdMob App ID yaz
-        run: |
-          python3 - <<'PY'
-          import re
-          p='android/app/src/main/AndroidManifest.xml'
-          s=open(p,encoding='utf-8').read()
-          APP_ID='ca-app-pub-3467001631229747~9723035555'
-          tag='<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="%s"/>' % APP_ID
-          pat=r'<meta-data\s+android:name="com\.google\.android\.gms\.ads\.APPLICATION_ID"[^>]*/>'
-          if re.search(pat,s):
-              s=re.sub(pat,tag,s)
-          else:
-              s=s.replace('</application>','    '+tag+'\n    </application>')
-          open(p,'w',encoding='utf-8').write(s)
-          PY
-
       - name: Surum kodunu ayarla
         run: |
-          sed -i "s/versionCode [0-9]*/versionCode $(( ${{ github.run_number }} + 100 ))/" android/app/build.gradle
+          sed -i "s/versionCode [0-9]*/versionCode $(( ${{ github.run_number }} + 200 ))/" android/app/build.gradle
 
-      - name: minSdk 24 yap
+      - name: Android SDK ayarlarini yap
         run: |
           sed -i "s/minSdkVersion = [0-9]*/minSdkVersion = 24/" android/variables.gradle
-
-      - name: SDK 36 ve AD_ID
-        run: |
           sed -i "s/compileSdkVersion = [0-9]*/compileSdkVersion = 36/" android/variables.gradle
           sed -i "s/targetSdkVersion = [0-9]*/targetSdkVersion = 36/" android/variables.gradle
           echo "android.suppressUnsupportedCompileSdk=36" >> android/gradle.properties
 
+      - name: AdMob ve AD_ID izinlerini duzelt
+        run: |
           python3 - <<'PY'
-          p='android/app/src/main/AndroidManifest.xml'
-          s=open(p,encoding='utf-8').read()
-          perm='<uses-permission android:name="com.google.android.gms.permission.AD_ID"/>'
-          if 'permission.AD_ID' not in s:
-              s=s.replace('</manifest>','    '+perm+'\n</manifest>')
-          open(p,'w',encoding='utf-8').write(s)
+          import xml.etree.ElementTree as ET
+
+          p = "android/app/src/main/AndroidManifest.xml"
+
+          NS = "http://schemas.android.com/apk/res/android"
+          TOOLS = "http://schemas.android.com/tools"
+
+          ET.register_namespace("android", NS)
+          ET.register_namespace("tools", TOOLS)
+
+          tree = ET.parse(p)
+          root = tree.getroot()
+
+          name_attr = "{" + NS + "}name"
+          value_attr = "{" + NS + "}value"
+
+          permission = "com.google.android.gms.permission.AD_ID"
+
+          for item in list(root):
+              if item.tag in ("uses-permission", "uses-permission-sdk-23"):
+                  if item.get(name_attr) == permission:
+                      root.remove(item)
+
+          perm = ET.Element("uses-permission")
+          perm.set(name_attr, permission)
+          root.insert(0, perm)
+
+          app = root.find("application")
+          assert app is not None, "Application element missing"
+
+          for item in list(app):
+              if item.tag == "meta-data":
+                  if item.get(name_attr) == "com.google.android.gms.ads.APPLICATION_ID":
+                      app.remove(item)
+
+          meta = ET.SubElement(app, "meta-data")
+          meta.set(name_attr, "com.google.android.gms.ads.APPLICATION_ID")
+          meta.set(value_attr, "ca-app-pub-3467001631229747~9723035555")
+
+          tree.write(p, encoding="utf-8", xml_declaration=True)
+
+          assert any(
+              item.get(name_attr) == permission
+              for item in root.findall("uses-permission")
+          ), "AD_ID permission missing"
+
+          print("AdMob App ID and AD_ID permission added.")
           PY
+
+          cat android/app/src/main/AndroidManifest.xml
 
       - name: Gradle izinlerini ayarla
         run: chmod +x android/gradlew
@@ -137,6 +163,37 @@ jobs:
       - name: AAB derle
         working-directory: android
         run: ./gradlew bundleRelease
+
+      - name: Derlenmis manifest AD_ID kontrolu
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          root = Path("android/app/build/intermediates")
+          ns = "{http://schemas.android.com/apk/res/android}"
+          permission = "com.google.android.gms.permission.AD_ID"
+
+          manifests = [
+              p for p in root.rglob("AndroidManifest.xml")
+              if "release" in str(p).lower()
+              and "merged_manifest" in str(p)
+          ]
+
+          assert manifests, "Release merged manifest not found"
+
+          for p in manifests:
+              manifest = ET.parse(p).getroot()
+
+              valid = any(
+                  item.get(ns + "name") == permission
+                  and item.get(ns + "maxSdkVersion") is None
+                  for item in manifest.findall("uses-permission")
+              )
+
+              assert valid, f"AD_ID missing or restricted: {p}"
+              print(f"AD_ID verified: {p}")
+          PY
 
       - name: AAB imzala
         env:
