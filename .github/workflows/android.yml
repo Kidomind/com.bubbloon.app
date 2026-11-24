@@ -1,3 +1,4 @@
+
 name: Android
 
 on:
@@ -8,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -37,6 +39,48 @@ jobs:
       - name: Senkronla
         run: npm run sync
 
+      - name: Android ikonlarini duzelt
+        run: |
+          python3 -m pip install Pillow
+          python3 - <<'PY'
+          from PIL import Image, ImageOps
+          from pathlib import Path
+
+          root = Path("android/app/src/main/res")
+          source = Image.open("icon.png").convert("RGBA")
+
+          sizes = {
+              "mdpi": 48,
+              "hdpi": 72,
+              "xhdpi": 96,
+              "xxhdpi": 144,
+              "xxxhdpi": 192
+          }
+
+          for density, size in sizes.items():
+              folder = root / f"mipmap-{density}"
+              folder.mkdir(parents=True, exist_ok=True)
+
+              icon = ImageOps.fit(
+                  source, (size, size),
+                  method=Image.Resampling.LANCZOS
+              )
+
+              icon.save(folder / "ic_launcher.png")
+              icon.save(folder / "ic_launcher_round.png")
+
+          for folder in root.glob("mipmap-anydpi*"):
+              for name in [
+                  "ic_launcher.xml",
+                  "ic_launcher_round.xml"
+              ]:
+                  path = folder / name
+                  if path.exists():
+                      path.unlink()
+
+          print("Launcher icons corrected.")
+          PY
+
       - name: AdMob App ID yaz
         run: |
           python3 - <<'PY'
@@ -52,7 +96,6 @@ jobs:
               s=s.replace('</application>','    '+tag+'\n    </application>')
           open(p,'w',encoding='utf-8').write(s)
           PY
-          grep -n "APPLICATION_ID" android/app/src/main/AndroidManifest.xml
 
       - name: Surum kodunu ayarla
         run: |
@@ -61,13 +104,13 @@ jobs:
       - name: minSdk 24 yap
         run: |
           sed -i "s/minSdkVersion = [0-9]*/minSdkVersion = 24/" android/variables.gradle
-          grep -n "minSdkVersion" android/variables.gradle
 
       - name: SDK 36 ve AD_ID
         run: |
           sed -i "s/compileSdkVersion = [0-9]*/compileSdkVersion = 36/" android/variables.gradle
           sed -i "s/targetSdkVersion = [0-9]*/targetSdkVersion = 36/" android/variables.gradle
           echo "android.suppressUnsupportedCompileSdk=36" >> android/gradle.properties
+
           python3 - <<'PY'
           p='android/app/src/main/AndroidManifest.xml'
           s=open(p,encoding='utf-8').read()
@@ -76,40 +119,57 @@ jobs:
               s=s.replace('</manifest>','    '+perm+'\n</manifest>')
           open(p,'w',encoding='utf-8').write(s)
           PY
-          grep -n "SdkVersion" android/variables.gradle
-          grep -n "AD_ID" android/app/src/main/AndroidManifest.xml
+
+      - name: Gradle izinlerini ayarla
+        run: chmod +x android/gradlew
 
       - name: Test APK derle
-        if: github.ref_type != 'tag'
-        run: npm run build:apk
+        working-directory: android
+        run: ./gradlew assembleDebug
 
       - name: APK yukle
-        if: github.ref_type != 'tag'
         uses: actions/upload-artifact@v4
         with:
-          name: bubbloon-debug-apk
+          name: Flag-Shooter-APK
           path: android/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
 
       - name: AAB derle
-        if: github.ref_type == 'tag'
-        run: npm run build:aab
+        working-directory: android
+        run: ./gradlew bundleRelease
 
       - name: AAB imzala
-        if: github.ref_type == 'tag'
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
+          set -e
+
           echo "$KEYSTORE_BASE64" | base64 -d > release.keystore
-          AAB=$(ls android/app/build/outputs/bundle/release/*.aab | head -n1)
-          jarsigner -sigalg SHA256withRSA -digestalg SHA-256 -keystore release.keystore -storepass "$KEYSTORE_PASSWORD" -keypass "$KEY_PASSWORD" "$AAB" "$KEY_ALIAS"
-          cp "$AAB" bubbloon-release.aab
+
+          AAB=$(find android/app/build/outputs/bundle/release -name "*.aab" | head -n1)
+
+          test -n "$AAB"
+
+          jarsigner \
+            -sigalg SHA256withRSA \
+            -digestalg SHA-256 \
+            -keystore release.keystore \
+            -storepass "$KEYSTORE_PASSWORD" \
+            -keypass "$KEY_PASSWORD" \
+            "$AAB" "$KEY_ALIAS"
+
+          jarsigner -verify "$AAB"
+
+          cp "$AAB" Flag-Shooter-release.aab
+
+          rm -f release.keystore
 
       - name: AAB yukle
-        if: github.ref_type == 'tag'
         uses: actions/upload-artifact@v4
         with:
-          name: bubbloon-release-aab
-          path: bubbloon-release.aab
+          name: Flag-Shooter-AAB
+          path: Flag-Shooter-release.aab
+          if-no-files-found: error
