@@ -2283,8 +2283,8 @@ applyLang();updateHome();$('homeScreen').classList.remove('hidden');$('ov').clas
 /* ===== AKSU ADS (banner / interstitial / rewarded / remove-ads) ===== */
 (function(){
 const ADS={
-  testMode:true,            // KAPALI TEST: test reklamları. Yayına çıkarken false yap
-  useTestIds:true,          // true: Google'ın resmi test ID'leri (hep reklam döner). Gerçek ID'lere geçmek için false yap
+  testMode:false,            // KAPALI TEST: test reklamları. Yayına çıkarken false yap
+  useTestIds:false,          // true: Google'ın resmi test ID'leri (hep reklam döner). Gerçek ID'lere geçmek için false yap
   test:{android:{b:'ca-app-pub-3940256099942544/6300978111',i:'ca-app-pub-3940256099942544/1033173712',rc:'ca-app-pub-3940256099942544/5224354917',ra:'ca-app-pub-3940256099942544/5224354917'},
         ios:{b:'ca-app-pub-3940256099942544/2934735716',i:'ca-app-pub-3940256099942544/4411468910',rc:'ca-app-pub-3940256099942544/1712485313',ra:'ca-app-pub-3940256099942544/1712485313'}},
   every:5,                  // 50. seviyeden sonra her 5 seviyede bir geçiş reklamı
