@@ -1,13 +1,16 @@
+
 {
   "appId": "com.bubbloon.app",
-  "appName": "Bubbloon",
+  "appName": "Flag Shooter",
   "webDir": "www",
-  "backgroundColor": "#140d3a",
-  "android": { "allowMixedContent": false },
+  "backgroundColor": "#0055CC",
+  "android": {
+    "allowMixedContent": false
+  },
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 1200,
-      "backgroundColor": "#140d3a",
+      "backgroundColor": "#0055CC",
       "androidScaleType": "CENTER_CROP",
       "showSpinner": false
     }
