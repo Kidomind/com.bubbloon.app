@@ -1,20 +1,23 @@
+
 {
   "background_color": "#ffffff",
   "dir": "ltr",
   "display": "standalone",
-  "name": "Bubbloon",
-  "orientation": "any",
+  "name": "Flag Shooter - Bubble Pop",
+  "short_name": "Flag Shooter",
+  "orientation": "portrait",
   "scope": "./",
-  "short_name": "Bubbloon",
   "start_url": "./index.html",
-  "theme_color": "#140d3a",
+  "theme_color": "#0055CC",
+  "lang": "en",
   "icons": [
     {
       "src": "icon.png",
       "type": "image/png",
-      "sizes": "256x256"
+      "sizes": "1024x1024",
+      "purpose": "any"
     }
   ],
   "id": "com.bubbloon.app",
-  "description": "Bubbloon, renkli baloncukları patlatarak eğlenceli ve keyifli vakit geçirebileceğiniz, sevimli tasarımlara sahip bir mobil oyundur."
+  "description": "Aim, shoot and pop colorful flag bubbles! Complete exciting levels, unlock rewards and enjoy a fun bubble shooter adventure."
 }
