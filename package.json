@@ -1,8 +1,9 @@
+
 {
-  "name": "bubbloon",
-  "version": "1.0.0",
+  "name": "flag-shooter",
+  "version": "1.0.7",
   "private": true,
-  "description": "Bubbloon - baloncuk patlatma oyunu",
+  "description": "Flag Shooter - Bubble Pop Game",
   "scripts": {
     "fonts": "node scripts/fonts.mjs",
     "assets": "npx capacitor-assets generate --android --assetPath resources",
