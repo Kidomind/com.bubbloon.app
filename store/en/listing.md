@@ -1,19 +1,36 @@
-# Google Play – English listing
 
-**App name (30):** Bubbloon: Bubble Pop
+# Google Play – English Listing
 
-**Short description (80):** Aim, match and pop colorful bubbles, beat levels and fill your album!
+**App name (30):** Flag Shooter - Bubble Pop
+
+**Short description (80):** Aim, match and pop flag bubbles in exciting levels and colorful challenges!
 
 **Full description:**
-Welcome to the colorful world of Bubbloon! Match bubbles of the same color, trigger chain reactions and clear hundreds of levels with stars.
 
-🎯 Easy to learn, hard to put down
-⭐ Collect 3 stars on every level
-⚡ Power-ups and special abilities
-🎨 New themes and looks in the store
-📖 Complete your collection album
-💎 Free gems and daily rewards
-🌍 Multiple languages
-🚫 One-time purchase to remove ads
+Welcome to Flag Shooter - Bubble Pop, a colorful bubble shooter adventure inspired by flags from around the world!
 
-Play offline anytime. Download now and start popping!
+Aim carefully, match identical bubbles, create satisfying chain reactions and complete exciting levels. Discover unique challenges, improve your shooting skills and unlock amazing rewards as you progress.
+
+## GAME FEATURES
+
+- Colorful bubbles featuring world flags.
+- Easy-to-learn shooting and matching mechanics.
+- Exciting levels with progressive difficulty.
+- Challenging boss battles.
+- Powerful boosters and special abilities.
+- Beautiful graphics and satisfying animations.
+- Collect stars and unlock exciting rewards.
+- Daily rewards and special challenges.
+- Multiple language support.
+- Optional in-app purchases.
+- Ad-free experience with premium purchase.
+
+Whether you are looking for a relaxing game or an exciting challenge, Flag Shooter offers a fun bubble-popping experience.
+
+Aim. Shoot. Match. Pop!
+
+Download Flag Shooter - Bubble Pop and start your adventure today!
+
+Developed by AKSU STUDIO.
+
+© 2026 AKSU STUDIO. All rights reserved.
