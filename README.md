@@ -1,46 +1,70 @@
-# 🫧 Bubbloon
 
-Baloncuk patlatma oyunu — HTML5 + [Capacitor](https://capacitorjs.com) ile Android (Google Play).
+# 🎯 Flag Shooter - Bubble Pop
 
-## Klasörler
-| Yol | Ne işe yarar |
+Developed by AKSU STUDIO.
+
+Flag Shooter is a colorful flag-themed bubble shooter game built with HTML5 and Capacitor for Android.
+
+## Project Information
+
+- Game: Flag Shooter - Bubble Pop
+- Developer: Aksu Studio
+- Package ID: com.bubbloon.app
+- Version: 1.0.7
+- Platform: Android
+- Target SDK: 36
+- Minimum SDK: 24
+- Default game language: English
+
+## Project Structure
+
+| File / Folder | Description |
 |---|---|
-| `www/` | Oyun (`index.html`) ve satın alma köprüsü |
-| `resources/` | Logodan üretilen ikon / adaptive ikon / splash |
-| `store/` | Play Store görselleri, metinler, kontrol listesi |
-| `docs/` | Gizlilik politikası (GitHub Pages) |
-| `scripts/` | Font, reklam ID ve manifest yardımcıları |
-| `.github/workflows/android.yml` | Etiket atınca imzalı `.aab` üretir |
+| index.html | Main game |
+| icon.png | Game icon |
+| resources/ | Android icons and splash screens |
+| store/ | Google Play graphics |
+| docs/ | Privacy policy |
+| scripts/ | Android build helpers |
+| iap-bridge.js | Google Play Billing bridge |
+| manifest.json | Web application settings |
+| capacitor.config.json | Android configuration |
+| package.json | Project dependencies |
+| .github/workflows/android.yml | Automated Android build |
 
-## Yerelde çalıştırma
-```bash
-npm install
-npm run android:add     # android/ klasörünü oluşturur
-npm run assets          # ikon + splash üretir
-npm run sync
-npm run open            # Android Studio
-```
-Tarayıcıda denemek için `www/index.html` dosyasını açman yeterli (reklamlar TEST modunda simüle edilir).
+## Android Build
 
-## Yayın öncesi yapılacaklar
-1. `capacitor.config.json` içinde `appId` değerini kendi paket adınla değiştir (`com.aksu.bubbloon`).
-2. AdMob'da uygulama + 3 reklam birimi (banner, interstitial, rewarded) aç.
-3. Play Console'da `remove_ads` adlı tek seferlik ürünü oluştur. Fiyat oyunda `$4.25` olarak sabit yazılı; istersen `www/index.html` içindeki `price:'$4.25'` kısmını güncelle.
-4. `docs/index.html` içindeki e-posta adresini düzelt, GitHub → Settings → Pages → `main` / `docs` seç.
-5. Keystore oluştur (**kaybetme!**):
-   ```bash
-   keytool -genkey -v -keystore bubbloon.jks -keyalg RSA -keysize 2048 -validity 10000 -alias bubbloon
-   base64 -w0 bubbloon.jks   # çıktıyı KEYSTORE_BASE64 secret'ına yapıştır
-   ```
-6. GitHub → Settings → Secrets → Actions altına ekle:
-   `KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`, `KEY_ALIAS`, `KEY_PASSWORD`,
-   `ADMOB_APP_ID`, `ADMOB_BANNER`, `ADMOB_INTERSTITIAL`, `ADMOB_REWARDED`
-7. Yayınla:
-   ```bash
-   git tag v1.0.0 && git push --tags
-   ```
-   Actions sekmesinden `bubbloon-release-aab` dosyasını indirip Play Console'a yükle. (Workflow `testMode`'u otomatik kapatır ve gerçek reklam ID'lerini yazar.)
+1. Upload the latest game files.
+2. Commit changes to the main branch.
+3. Create a new release tag, such as v1.0.7.
+4. Wait for GitHub Actions to complete.
+5. Download bubbloon-release-aab.
+6. Upload the signed AAB to Google Play Console.
 
-## Notlar
-- Eklenti sürümleri (`@capacitor-community/admob`, `@capgo/native-purchases`) `package.json` içinde `^7` olarak ayarlı; ilk `npm install` sonrası çalıştığını test kapalı testte doğrula.
-- Google'ın test reklam ID'leri yalnızca geliştirme içindir; gerçek ID'lerle kendi reklamına tıklama.
+## Signing Secrets
+
+- KEYSTORE_BASE64
+- KEYSTORE_PASSWORD
+- KEY_ALIAS
+- KEY_PASSWORD
+
+Never publish signing keys or passwords.
+
+## Monetization
+
+- AdMob banner ads
+- Interstitial ads
+- Rewarded ads
+- Google Play in-app purchases
+
+Test all advertising and purchasing features before publishing.
+
+## Important
+
+Keep the existing package ID and upload signing key.
+
+The Android versionCode must be higher than the previously published version.
+
+## Copyright
+
+© 2026 AKSU STUDIO. All rights reserved.
