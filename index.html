@@ -468,6 +468,51 @@ header{background:linear-gradient(180deg,#235f98,#102b51)!important;border-botto
 #c{filter:saturate(1.16) contrast(1.045)}
 @media(max-width:380px){.panel-card{padding:14px!important}#res .rs-card{padding:17px 12px!important}}
 @media(prefers-reduced-motion:reduce){#res .rs-stars svg.on{animation:none!important}}
+
+/* ===== FLAG SHOOTER: connection gate + animal charity card ===== */
+#netGate{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 20px) 22px calc(env(safe-area-inset-bottom,0px) + 20px);overflow:auto;touch-action:manipulation;color:#fff;font-family:'Baloo 2',ui-rounded,system-ui,-apple-system,'Segoe UI','Noto Sans','Noto Sans Arabic','Noto Sans JP','Noto Sans SC','Noto Sans KR','Noto Sans Devanagari',sans-serif;background:radial-gradient(70% 42% at 50% 36%,#2fd4ff33,#0000),radial-gradient(55% 32% at 8% 92%,#ff5d8630,#0000),radial-gradient(120% 80% at 50% -10%,#1d5a82 0%,#122337 55%,#0a1424 100%);transition:opacity .25s ease}
+#netGate.on{display:flex}
+#netGate[data-m=pending]{opacity:0;background:transparent}
+#netGate .ng-card{width:min(100%,380px);margin:auto;text-align:center;padding:30px 22px 24px;border-radius:30px;background:radial-gradient(circle at 50% 0%,#2f86b8 0%,#18496f 38%,#0f2744 100%);border:2px solid #67d7ffa0;box-shadow:inset 0 2px 0 #ffffff55,0 8px 0 #06132c,0 24px 60px #000a,0 0 38px #32c4ff33}
+#netGate .ng-ico{width:104px;height:104px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#0b2442 0%,#10345a 70%);border:2px solid #7fe3ff77;box-shadow:0 0 0 8px #7fe3ff14,0 0 28px #32c4ff55;animation:ngPulse 2.6s ease-in-out infinite}
+#netGate .ng-ico svg{width:60px;height:60px}
+#netGate h2{margin:0 0 10px;color:#F5BE4F;font-size:clamp(23px,6.4vw,29px);font-weight:900;line-height:1.15;text-shadow:0 3px 0 #7a4a00,0 6px 14px #001a37}
+#netGate p{margin:0 0 22px;color:#e1f3fb;font-size:16px;line-height:1.5;font-weight:600}
+#netGate button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;min-width:190px;max-width:100%;padding:0 30px;border-radius:17px;cursor:pointer;font:900 18px/1.1 inherit;font-family:inherit;letter-spacing:.5px;color:#462800;background:linear-gradient(180deg,#fff4a5 0%,#ffca44 50%,#ffac19 100%);border:1px solid #fff0a5;box-shadow:inset 0 2px 0 #ffffffaa,0 5px 0 #a36b10,0 11px 18px #05122b88}
+#netGate button:active{transform:translateY(3px);box-shadow:inset 0 2px 0 #ffffffaa,0 2px 0 #a36b10,0 5px 10px #05122b88}
+#netGate button:disabled{opacity:.8;cursor:default}
+#netGate button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+#netGate .ng-spin{display:none;width:20px;height:20px;border-radius:50%;border:3px solid #46280033;border-top-color:#462800;animation:ngSpin .8s linear infinite}
+#netGate.busy .ng-spin{display:inline-block}
+#netGate .ng-wait{display:none;width:54px;height:54px;margin:0 auto;border-radius:50%;border:5px solid #7fe3ff30;border-top-color:#F5BE4F;animation:ngSpin .9s linear infinite}
+#netGate[data-m=checking] .ng-card>:not(.ng-wait){display:none}
+#netGate[data-m=checking] .ng-card{background:none;border:0;box-shadow:none;padding:0}
+#netGate[data-m=checking] .ng-wait{display:block}
+#netGate.shake .ng-card{animation:ngShake .42s ease}
+@keyframes ngSpin{to{transform:rotate(360deg)}}
+@keyframes ngPulse{0%,100%{box-shadow:0 0 0 8px #7fe3ff14,0 0 24px #32c4ff44}50%{box-shadow:0 0 0 14px #7fe3ff0a,0 0 38px #32c4ff88}}
+@keyframes ngShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
+#pawCard{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 16px) 18px calc(env(safe-area-inset-bottom,0px) + 16px);background:#050f1ed0;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);font-family:'Baloo 2',ui-rounded,system-ui,-apple-system,'Segoe UI','Noto Sans','Noto Sans Arabic','Noto Sans JP','Noto Sans SC','Noto Sans KR','Noto Sans Devanagari',sans-serif}
+#pawCard.on{display:flex;animation:pwIn .28s ease-out}
+#pawCard .pw-card{position:relative;width:min(100%,380px);max-height:88dvh;overflow:auto;touch-action:pan-y;text-align:center;border-radius:28px;padding:26px 22px 20px;background:radial-gradient(circle at 50% 0%,#33849e 0%,#1b5273 36%,#112b47 100%);border:2px solid #ffd96a99;box-shadow:inset 0 2px 0 #ffffff50,0 8px 0 #06132c,0 24px 60px #000b,0 0 34px #ffc02d33}
+#pawCard .pw-ico{width:86px;height:86px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;font-size:42px;line-height:1;background:radial-gradient(circle at 50% 35%,#ffe58a,#ffb92a 62%,#e88f00);box-shadow:inset 0 3px 0 #fff8c8,0 5px 0 #9c6309,0 0 26px #ffc02d77}
+#pawCard .pw-ico span{filter:drop-shadow(0 2px 0 #7a4a0066);animation:pwBeat 2.4s ease-in-out infinite}
+#pawCard h3{margin:0 0 6px;color:#ffdf76;font-size:clamp(22px,6vw,27px);font-weight:900;line-height:1.15;text-shadow:0 3px 0 #7a4a00,0 6px 14px #001a37}
+#pawCard .pw-rule{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 14px;color:#ffdf76;font-size:12px;opacity:.9}
+#pawCard .pw-rule:before,#pawCard .pw-rule:after{content:'';height:1px;width:56px;background:linear-gradient(90deg,#0000,#ffd96a99)}
+#pawCard .pw-rule:after{transform:scaleX(-1)}
+#pawCard p{margin:0 0 20px;color:#e6f5fb;font-size:16px;line-height:1.62;font-weight:600}
+#pawCard button.pw-x{display:inline-flex;align-items:center;justify-content:center;min-height:48px;min-width:150px;padding:0 28px;border-radius:15px;cursor:pointer;font:900 17px/1.1 inherit;font-family:inherit;color:#462800;background:linear-gradient(180deg,#fff4a5 0%,#ffca44 50%,#ffac19 100%);border:1px solid #fff0a5;box-shadow:inset 0 2px 0 #ffffffaa,0 4px 0 #a36b10,0 9px 15px #05122b88}
+#pawCard button.pw-x:active{transform:translateY(2px)}
+#pawCard button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+@keyframes pwIn{from{opacity:0}to{opacity:1}}
+@keyframes pwBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.paw-chip{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;max-width:min(100%,380px);min-height:34px;padding:5px 15px;border-radius:99px;cursor:pointer;font:800 13px/1.15 'Baloo 2',ui-rounded,system-ui,sans-serif;color:#ffe9b0;background:linear-gradient(180deg,#ffffff26,#ffffff0b);border:1px solid #ffd96a66;box-shadow:0 3px 10px #0004,inset 0 1px 0 #ffffff30}
+.paw-chip i{font-style:normal;font-size:16px;line-height:1}
+.paw-chip.new{border-color:#ffd96aaa;box-shadow:0 3px 10px #0004,0 0 14px #ffc02d55,inset 0 1px 0 #ffffff30}
+.paw-chip.new i{animation:pwBeat 2.2s ease-in-out infinite}
+.paw-chip:active{transform:scale(.97)}
+@media(prefers-reduced-motion:reduce){#netGate .ng-ico,#pawCard .pw-ico span,.paw-chip.new i,#pawCard.on,#netGate.shake .ng-card{animation:none}}
 </style>
 </head>
 <body>
@@ -503,6 +548,7 @@ header{background:linear-gradient(180deg,#235f98,#102b51)!important;border-botto
   </div>
   <div class="home-ads"><button class="na-card" id="homeNoAds"><b class="na-badge">NO ADS</b><span class="na-sub"></span></button><button class="na-gift" id="homeGift"><span>🎬</span><b></b></button></div>
   <div class="home-progress"><div class="home-progress-head"><span>Macera ilerlemesi</span><span id="homeLevelText">Seviye 1</span></div><div class="home-progress-track"><div class="home-progress-fill" id="homeProgressFill"></div></div></div>
+  <button class="paw-chip" id="homePaw" type="button"><i aria-hidden="true">🐾</i><span id="homePawT"></span></button>
   <div class="home-studio">Aksu Studio</div>
 </div>
 <header>
@@ -2631,6 +2677,202 @@ updateAlbum=function(){
   }catch(e){}
   return r;
 };
+})();
+</script>
+
+<div id="netGate" role="alertdialog" aria-modal="true" aria-labelledby="ngT" aria-describedby="ngM" data-m="pending">
+  <div class="ng-card">
+    <div class="ng-ico" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8 24c13-11 35-11 48 0" stroke="#7fe3ff" stroke-width="5"/><path d="M17 34c9-8 21-8 30 0" stroke="#7fe3ff" stroke-width="5"/><path d="M26 44c4-3.5 8-3.5 12 0" stroke="#7fe3ff" stroke-width="5"/><circle cx="32" cy="52" r="3.5" fill="#F5BE4F"/><path d="M10 8l44 46" stroke="#112033" stroke-width="10"/><path d="M10 8l44 46" stroke="#F5BE4F" stroke-width="5.5"/></svg></div>
+    <h2 id="ngT"></h2>
+    <p id="ngM"></p>
+    <button id="ngB" type="button"><i class="ng-spin" aria-hidden="true"></i><span id="ngBT"></span></button>
+    <div class="ng-wait" aria-hidden="true"></div>
+  </div>
+</div>
+<div id="pawCard" role="dialog" aria-modal="true" aria-labelledby="pwT">
+  <div class="pw-card">
+    <div class="pw-ico" aria-hidden="true"><span>🐾</span></div>
+    <h3 id="pwT"></h3>
+    <div class="pw-rule" aria-hidden="true">✦</div>
+    <p id="pwM"></p>
+    <button class="pw-x" id="pwX" type="button"></button>
+  </div>
+</div>
+
+<script>
+/* ===== FLAG SHOOTER: strict connection gate + animal charity card (added) ===== */
+(function(){
+/* ---- CONNECTIVITY CONFIG ------------------------------------------------
+   HOW THE INTERNET GATE VERIFIES CONNECTIVITY
+   ------------------------------------------------------------------------
+   endpoint : YOUR OWN dedicated HTTPS connectivity endpoint (e.g. 'https://YOUR-DOMAIN/health').
+              >>> SET THIS BEFORE RELEASE. It is intentionally EMPTY: no server URL is invented here. <<<
+              When set, the app calls it with fetch() in CORS mode and only counts the device as online if
+              the REAL HTTP status equals expectStatus, the response type is 'cors', and no redirect happened
+              (so captive portals / Wi-Fi login pages, which answer 200 or redirect, are NOT treated as online).
+   expectStatus : HTTP status the endpoint must return (default 204 = empty body).
+
+   REQUIRED SERVER SETUP for the endpoint
+     - HTTPS only, GET, answers HTTP 204 (or whatever expectStatus says) with an empty body, no redirects.
+     - CORS: Access-Control-Allow-Origin: *   (simplest; the endpoint holds no private data). If you prefer an
+       allow-list, include every origin the app runs from, e.g. https://localhost (Capacitor/Android),
+       capacitor://localhost (iOS) and your GitHub Pages / PWA origin. No credentials, no custom request headers
+       (so no preflight is needed).
+     - Cache-Control: no-store
+     - If you use a service worker, let requests to this endpoint go straight to the network (do not cache them).
+
+   Until "endpoint" is set, the gate STAYS ACTIVE and keeps using the temporary fallbackUrls below
+   (Google's public generate_204 URLs, no-cors). That only proves the endpoint is reachable and does NOT validate the
+   HTTP response, so it is a stop-gap only. A browser console warning is printed while the fallback is in use.
+   ------------------------------------------------------------------------- */
+var NET={endpoint:'',expectStatus:204,
+  fallbackUrls:['https://www.gstatic.com/generate_204','https://www.google.com/generate_204'],
+  timeoutMs:6000,heartbeatMs:20000,autoRetryMs:6000,retryGapMs:1200};
+var warned=false;
+/* returns {strict:true,urls:[endpoint]} when a valid https endpoint is configured, else the temporary fallback */
+function plan(){
+  var e=typeof NET.endpoint==='string'?NET.endpoint.trim():'';
+  if(e){
+    var ok=false;try{var u=new URL(e);ok=u.protocol==='https:'&&!!u.hostname}catch(x){}
+    if(ok)return{strict:true,urls:[e]};
+    if(!warned){warned=true;try{console.error('FLAG SHOOTER: NET.endpoint must be a valid https:// URL - using the temporary fallback')}catch(x){}}
+    return{strict:false,urls:NET.fallbackUrls};
+  }
+  if(!warned){warned=true;try{console.warn('FLAG SHOOTER: no dedicated connectivity endpoint configured (NET.endpoint) - using temporary reachability-only fallback')}catch(x){}}
+  return{strict:false,urls:NET.fallbackUrls};
+}
+var TXT={"tr":{"t":"İnternet Bağlantısı Gerekli","m":"FLAG SHOOTER'ı oynayabilmek için aktif bir internet bağlantısına ihtiyacınız var. Lütfen internete bağlanıp tekrar deneyin.","b":"TEKRAR DENE"},"en":{"t":"Internet Connection Required","m":"An active internet connection is required to play FLAG SHOOTER. Please connect to the internet and try again.","b":"TRY AGAIN"},"ar":{"t":"يلزم الاتصال بالإنترنت","m":"تحتاج إلى اتصال نشط بالإنترنت للعب FLAG SHOOTER. يرجى الاتصال بالإنترنت والمحاولة مرة أخرى.","b":"حاول مرة أخرى"},"ja":{"t":"インターネット接続が必要です","m":"FLAG SHOOTERをプレイするには、インターネットへの接続が必要です。インターネットに接続して、もう一度お試しください。","b":"再試行"},"zh":{"t":"需要连接互联网","m":"玩 FLAG SHOOTER 需要有效的互联网连接。请连接互联网后重试。","b":"重试"},"hi":{"t":"इंटरनेट कनेक्शन आवश्यक है","m":"FLAG SHOOTER खेलने के लिए सक्रिय इंटरनेट कनेक्शन आवश्यक है। कृपया इंटरनेट से जुड़ें और फिर से प्रयास करें।","b":"पुनः प्रयास करें"},"es":{"t":"Se requiere conexión a Internet","m":"Necesitas una conexión activa a Internet para jugar a FLAG SHOOTER. Conéctate a Internet e inténtalo de nuevo.","b":"REINTENTAR"},"de":{"t":"Internetverbindung erforderlich","m":"Zum Spielen von FLAG SHOOTER benötigst du eine aktive Internetverbindung. Bitte stelle eine Internetverbindung her und versuche es erneut.","b":"ERNEUT VERSUCHEN"},"fr":{"t":"Connexion Internet requise","m":"Une connexion Internet active est nécessaire pour jouer à FLAG SHOOTER. Veuillez vous connecter à Internet et réessayer.","b":"RÉESSAYER"},"pt":{"t":"Conexão com a Internet necessária","m":"É necessária uma conexão ativa com a Internet para jogar FLAG SHOOTER. Conecte-se à Internet e tente novamente.","b":"TENTAR NOVAMENTE"},"ko":{"t":"인터넷 연결 필요","m":"FLAG SHOOTER를 플레이하려면 인터넷 연결이 필요합니다. 인터넷에 연결한 후 다시 시도해 주세요.","b":"다시 시도"}}, PAW={"tr":{"t":"Sokak Dostlarımız İçin","m":"FLAG SHOOTER'ın tek gelir kaynağı reklamlardır. Reklam gelirimizin bir kısmını sokak hayvanlarının beslenmesine ve bakımına ayırmayı taahhüt ediyoruz. İyiliğin paylaşıldıkça daha anlamlı hale geldiğine inanıyoruz. Desteğinizle daha fazla cana umut olmak istiyoruz. ❤️🐾"},"en":{"t":"For Our Stray Friends","m":"Advertising is the only source of income for FLAG SHOOTER. We are committed to allocating a portion of our advertising revenue to feeding and caring for stray animals. We believe kindness becomes more meaningful when shared. With your support, we want to bring hope to more animals. ❤️🐾"},"ar":{"t":"من أجل الحيوانات الضالة","m":"الإعلانات هي مصدر الدخل الوحيد للعبة FLAG SHOOTER. نلتزم بتخصيص جزء من عائدات إعلاناتنا لإطعام الحيوانات الضالة ورعايتها. ونؤمن بأن اللطف يصبح أكثر معنى عندما نتشاركه. وبدعمكم، نأمل أن نمنح المزيد من الحيوانات الأمل. ❤️🐾"},"ja":{"t":"野良動物たちのために","m":"FLAG SHOOTERの収益源は広告のみです。広告収益の一部を、野良動物の食事や世話のために役立てることをお約束します。優しさは分かち合うことで、より意味のあるものになると私たちは信じています。皆さまの応援とともに、より多くの動物に希望を届けたいと願っています。❤️🐾"},"zh":{"t":"关爱流浪动物","m":"广告是 FLAG SHOOTER 唯一的收入来源。我们承诺将部分广告收入用于为流浪动物提供食物和照料。我们相信，善意在分享中会变得更有意义。希望在大家的支持下，为更多动物带去希望。❤️🐾"},"hi":{"t":"बेसहारा जानवरों के लिए","m":"विज्ञापन ही FLAG SHOOTER की आय का एकमात्र स्रोत हैं। हम अपनी विज्ञापन आय का एक हिस्सा बेसहारा जानवरों को भोजन और देखभाल उपलब्ध कराने के लिए समर्पित करने का संकल्प लेते हैं। हमारा मानना है कि दया बाँटने से और भी अर्थपूर्ण हो जाती है। आपके सहयोग से हम और अधिक जानवरों के जीवन में आशा लाना चाहते हैं। ❤️🐾"},"es":{"t":"Por los animales sin hogar","m":"La publicidad es la única fuente de ingresos de FLAG SHOOTER. Nos comprometemos a destinar una parte de nuestros ingresos publicitarios a alimentar y cuidar a los animales sin hogar. Creemos que la bondad cobra más sentido cuando se comparte. Con vuestro apoyo, queremos llevar esperanza a más animales. ❤️🐾"},"de":{"t":"Für Streunertiere","m":"Werbung ist die einzige Einnahmequelle von FLAG SHOOTER. Wir verpflichten uns, einen Teil unserer Werbeeinnahmen für die Fütterung und Versorgung von Streunertieren einzusetzen. Wir glauben, dass Freundlichkeit mehr Bedeutung bekommt, wenn man sie teilt. Mit eurer Unterstützung möchten wir noch mehr Tieren Hoffnung schenken. ❤️🐾"},"fr":{"t":"Pour les animaux errants","m":"La publicité est l'unique source de revenus de FLAG SHOOTER. Nous nous engageons à consacrer une partie de nos revenus publicitaires à nourrir et à prendre soin des animaux errants. Nous croyons que la bonté prend tout son sens lorsqu'elle est partagée. Grâce à votre soutien, nous espérons apporter de l'espoir à davantage d'animaux. ❤️🐾"},"pt":{"t":"Pelos animais de rua","m":"A publicidade é a única fonte de receita do FLAG SHOOTER. Assumimos o compromisso de destinar uma parte da nossa receita com publicidade à alimentação e aos cuidados de animais em situação de rua. Acreditamos que a bondade ganha mais sentido quando é compartilhada. Com o seu apoio, queremos levar esperança a ainda mais animais. ❤️🐾"},"ko":{"t":"길거리 동물들을 위해","m":"FLAG SHOOTER의 유일한 수입원은 광고입니다. 광고 수익의 일부를 길거리 동물들의 먹이와 돌봄을 위해 사용하기로 약속합니다. 우리는 친절은 나눌 때 더 큰 의미를 갖는다고 믿습니다. 여러분의 응원과 함께 더 많은 동물들에게 희망을 전하고 싶습니다. ❤️🐾"}};
+var G=document.getElementById('netGate'),gT=document.getElementById('ngT'),gM=document.getElementById('ngM'),gB=document.getElementById('ngB'),gBT=document.getElementById('ngBT');
+var P=document.getElementById('pawCard'),pT=document.getElementById('pwT'),pM=document.getElementById('pwM'),pX=document.getElementById('pwX');
+var chip=document.getElementById('homePaw'),chipT=document.getElementById('homePawT');
+var SEEN='fs-paw-seen';
+var blocked=false,mode='',prevState=null,chk=null,lastAt=0,tm=0,inflight=null;
+function lang(){return(typeof LANG==='string'&&TXT[LANG])?LANG:'en'}
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){}return null}
+
+/* ---- real connectivity probe ---- */
+function one(u,strict){return new Promise(function(res){
+  var done=false,ac=null,t=0;
+  function fin(v){if(done)return;done=true;clearTimeout(t);try{if(ac)ac.abort()}catch(e){}res(v)}
+  try{
+    ac=typeof AbortController==='function'?new AbortController():null;
+    t=setTimeout(function(){fin(false)},NET.timeoutMs);
+    fetch(u+(u.indexOf('?')<0?'?':'&')+'_fs='+Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+      {method:'GET',mode:strict?'cors':'no-cors',cache:'no-store',credentials:'omit',redirect:strict?'error':'follow',referrerPolicy:'no-referrer',signal:ac?ac.signal:undefined})
+      .then(function(r){fin(strict?(r.type==='cors'&&r.status===NET.expectStatus):true)},function(){fin(false)});
+  }catch(e){fin(false)}
+})}
+function probe(){
+  if(navigator.onLine===false)return Promise.resolve(false);   /* "false" from the browser is reliable */
+  if(inflight)return inflight;
+  var pl=plan();
+  inflight=new Promise(function(res){var n=pl.urls.length,ok=false;
+    pl.urls.forEach(function(u){one(u,pl.strict).then(function(v){if(ok)return;if(v){ok=true;res(true)}else if(--n===0)res(false)})})
+  }).then(function(v){inflight=null;return v});
+  return inflight;
+}
+
+/* ---- gate UI ---- */
+var GATED=['#homeScreen','header','#economy','#powers','#panel','#wrap','#pawCard'];
+function setInert(on){GATED.forEach(function(s){var e=document.querySelector(s);if(!e)return;if(on)e.setAttribute('inert','');else e.removeAttribute('inert')})}
+function renderGate(){var l=lang(),x=TXT[l];G.setAttribute('dir',l==='ar'?'rtl':'ltr');G.setAttribute('lang',l);gT.textContent=x.t;gM.textContent=x.m;gBT.textContent=x.b}
+function setMode(m){mode=m;G.setAttribute('data-m',m);if(m==='offline')renderGate();G.classList.add('on')}
+function block(m){
+  if(!blocked){
+    blocked=true;
+    try{prevState=state;if(state!=='netblock')state='netblock'}catch(e){}
+    try{down=false;aim=null;md=null}catch(e){}
+    try{if(AC&&AC.suspend)AC.suspend().catch(function(){})}catch(e){}
+    closePaw();setInert(true);
+  }
+  setMode(m);
+  if(m==='offline'&&document.activeElement&&document.activeElement!==gB){try{gB.focus({preventScroll:true})}catch(e){}}
+}
+function unblock(){
+  if(!blocked)return;
+  blocked=false;G.classList.remove('on','busy','shake');G.setAttribute('data-m','');mode='';
+  setInert(false);
+  try{if(state==='netblock')state=prevState||'menu'}catch(e){}
+  prevState=null;
+  try{if(AC&&AC.state==='suspended'&&!document.hidden)AC.resume().catch(function(){})}catch(e){}
+  autoPaw();
+}
+
+/* ---- check orchestration (single flight) ---- */
+function check(o){
+  o=o||{};
+  if(chk)return chk;
+  chk=(function(){
+    return probe().then(function(ok){
+      if(!ok&&!o.manual&&!blocked&&navigator.onLine!==false)return sleep(NET.retryGapMs).then(probe);
+      return ok;
+    }).then(function(ok){lastAt=Date.now();if(ok)unblock();else block('offline');return ok});
+  })();
+  var clear=function(){chk=null};chk.then(clear,clear);
+  return chk;
+}
+function tick(){clearTimeout(tm);tm=setTimeout(function(){if(!document.hidden)check();tick()},blocked?NET.autoRetryMs:NET.heartbeatMs)}
+function onResume(){if(Date.now()-lastAt<700)return;check()}
+
+gB.addEventListener('click',function(){
+  if(gB.disabled)return;
+  gB.disabled=true;G.classList.add('busy');G.classList.remove('shake');
+  var t0=Date.now();
+  check({manual:true}).then(function(ok){
+    setTimeout(function(){gB.disabled=false;G.classList.remove('busy');if(!ok&&blocked){void G.offsetWidth;G.classList.add('shake')}},Math.max(0,550-(Date.now()-t0)));
+  });
+});
+window.addEventListener('offline',function(){block('offline')});
+window.addEventListener('online',function(){check()});
+document.addEventListener('visibilitychange',function(){
+  if(document.hidden)return;
+  if(blocked){try{if(AC&&AC.suspend)AC.suspend().catch(function(){})}catch(e){}}  /* the game's own handler resumes audio; keep it silent while blocked */
+  onResume();
+});
+try{var C=window.Capacitor,A=C&&C.Plugins&&C.Plugins.App;if(A&&A.addListener)A.addListener('appStateChange',function(s){if(s&&s.isActive)onResume()})}catch(e){}
+
+/* ---- animal charity card ---- */
+function pawLabel(){var x=PAW[lang()]||PAW.en;if(chipT)chipT.textContent=x.t;if(chip){chip.setAttribute('aria-label',x.t);chip.setAttribute('lang',lang())}}
+function closeLabel(){try{if(typeof TT==='function')return TT('Kapat')}catch(e){}return 'OK'}
+function openPaw(){
+  if(blocked)return;
+  var l=lang(),x=PAW[l]||PAW.en;
+  P.setAttribute('dir',l==='ar'?'rtl':'ltr');P.setAttribute('lang',l);
+  pT.textContent=x.t;pM.textContent=x.m;pX.textContent=closeLabel();
+  P.classList.add('on');ls(SEEN,'1');if(chip)chip.classList.remove('new');
+  try{pX.focus({preventScroll:true})}catch(e){}
+}
+function closePaw(){if(P)P.classList.remove('on')}
+if(chip)chip.addEventListener('click',function(){try{if(typeof play==='function')play('click')}catch(e){}openPaw()});
+pX.addEventListener('click',closePaw);
+P.addEventListener('click',function(e){if(e.target===P)closePaw()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closePaw()});
+if(chip&&ls(SEEN)!=='1')chip.classList.add('new');
+/* shown by itself only ONCE (first time the home screen is reachable); afterwards only via the 🐾 card on the home screen */
+var autoTries=0;
+function autoPaw(){
+  if(ls(SEEN)==='1'||autoTries>7)return;
+  autoTries++;
+  setTimeout(function(){
+    if(ls(SEEN)==='1'||blocked)return;
+    var hs=document.getElementById('homeScreen'),pn=document.getElementById('panel'),ok=false;
+    try{ok=state==='menu'&&hs&&!hs.classList.contains('hidden')&&!(pn&&pn.classList.contains('show'))&&!document.hidden}catch(e){}
+    if(ok)openPaw();else autoPaw();
+  },autoTries===1?1600:1500);
+}
+
+/* keep labels in the selected language (wraps the game's own applyLang, nothing else changes) */
+try{if(typeof applyLang==='function'){var _al=applyLang;applyLang=function(){var r=_al.apply(this,arguments);try{pawLabel();if(blocked&&mode==='offline')renderGate();if(P.classList.contains('on'))openPawRefresh()}catch(e){}return r}}}catch(e){}
+function openPawRefresh(){var l=lang(),x=PAW[l]||PAW.en;P.setAttribute('dir',l==='ar'?'rtl':'ltr');pT.textContent=x.t;pM.textContent=x.m;pX.textContent=closeLabel()}
+pawLabel();
+
+/* ---- boot: nothing is reachable until the first real check succeeds ---- */
+block('pending');
+var splashWatch=setInterval(function(){if(mode==='pending'&&!document.getElementById('splash')){setMode('checking')}if(mode!=='pending'&&mode!=='checking'||!blocked)clearInterval(splashWatch)},150);
+check({manual:true});
+tick();
+window.FSNet={cfg:NET,check:check,isBlocked:function(){return blocked}};
 })();
 </script>
 </body>
